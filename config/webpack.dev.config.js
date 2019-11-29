@@ -2,6 +2,7 @@ const { defaults } = require('lodash');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const base = require('./webpack.config');
 
+console.log(base)
 module.exports = defaults({
   module: {
     rules: base.module.rules.map(rule => {

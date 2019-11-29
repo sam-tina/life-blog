@@ -6,12 +6,15 @@ const config = {
   entry: {
     index: './index.js'
   },
-  rules: [
-    {
-      test: /\.pug$/,
-      loader: 'pug-loader',
-    }
-  ]
+  module: {
+    rules: [
+      {
+        test: /\.pug$/,
+        loader: 'pug-loader',
+      }
+    ]
+  },
+  plugins: []
 }
 
 const pages = Object.keys(config.entry)
@@ -22,3 +25,5 @@ config.plugins = config.plugins.concat(pages.map(page => {
     chunks: [page],
   })
 }))
+
+module.exports = config
