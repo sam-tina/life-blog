@@ -1,22 +1,14 @@
 const { defaults } = require('lodash');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const base = require('./webpack.config');
+const webpack = require('webpack');
 
-console.log(base)
 module.exports = defaults({
-  module: {
-    rules: base.module.rules.map(rule => {
-      if (!rule.test.test('a.styl')) {
-        return rule
-      }
-      rule.use[0] = MiniCssExtractPlugin.loader
-      return rule
-    })
+  mode: 'development',
+  devServer: {
+    inline: true,
+    hot: true
   },
-
-  plugins: base.plugins.concat([
-    new MiniCssExtractPlugin({
-      FILENAME: 'screen.css'
-    })
-  ])
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ]
 }, base)
